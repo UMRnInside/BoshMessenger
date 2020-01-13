@@ -23,6 +23,10 @@ for af in after:
 # Avoid changes
 fortunes = tuple(fortunes[:FORTUNE_CAP])
 
+def set_topic(topic):
+    for s in bosh:
+        s.replace("x", topic)
+
 if __name__ == "__main__":
     # Test
     print("\n".join(fortunes))
