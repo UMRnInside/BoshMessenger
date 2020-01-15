@@ -15,10 +15,6 @@ python3 boshencode.py < original.bin > bosh.txt
 python3 boshdecode.py < bosh.txt > decoded.bin
 ```
 
-注意：请把编码存入文件。如果您将编码后的内容直接粘贴至 `boshdecode.py` 的标准输入，您可能得到不完整的内容。
-
-从终端启动 `python3` 且不使用管道时，程序似乎一次只读取 4096 字节，解决办法未知。
-
 ## Note
 目前，废话信使 _BoshMessenger_ 一次只能够传递 32767 字节的信息。
 
