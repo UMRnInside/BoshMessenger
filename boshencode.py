@@ -39,6 +39,9 @@ def bytes_encode(bdata):
             iobuffer.write("\n")
             tmp = ""
 
+    if tmp:
+        iobuffer.write(tmp)
+        iobuffer.write("\n")
     iobuffer.seek(0)
     return iobuffer.read()
 
