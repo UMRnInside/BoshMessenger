@@ -24,8 +24,8 @@ for af in after:
 fortunes = tuple(fortunes[:FORTUNE_CAP])
 
 def set_topic(topic):
-    for s in bosh:
-        s.replace("x", topic)
+    global bosh
+    bosh = [ s.replace("x", topic) for s in bosh ]
 
 # TODO: Support user-defined topic
 set_topic("这件事")
