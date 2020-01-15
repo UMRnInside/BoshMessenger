@@ -56,8 +56,9 @@ if __name__ == "__main__":
     import sys
     #print(byte2_unpack((0x01, 0x626)))
     #print(byte2_decode("带着这些问题, 我们来审视一下x。爱迪生曾经说过，天才是百分之一的勤奋加百分之九十九的汗水。这不禁令我深思。"))
+    desc_stdin = sys.stdin.fileno()
     desc_stdout = sys.stdout.fileno()
-    st_in = sys.stdin.read()
+    st_in = open(desc_stdin, "rb", closefd=False).read().decode("utf-8", "ignore")
     open(desc_stdout, "wb", closefd=False).write(utf8_decode(st_in))
     #sys.stdout.write(bytes_encode(st_in))
 
