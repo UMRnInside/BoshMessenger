@@ -27,6 +27,9 @@ def set_topic(topic):
     for s in bosh:
         s.replace("x", topic)
 
+# TODO: Support user-defined topic
+set_topic("这件事")
+
 if __name__ == "__main__":
     # Test
     print("\n".join(fortunes))
