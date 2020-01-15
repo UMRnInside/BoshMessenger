@@ -1,5 +1,6 @@
 import boshdata
 import struct
+import random
 import io
 
 BFCAP = 12
@@ -27,15 +28,19 @@ def gen_length_indicator(length):
 
 def bytes_encode(bdata):
     iobuffer = io.StringIO("")
+    tmp = ""
     lenindi = gen_length_indicator( len(bdata) )
     iobuffer.write(lenindi)
 
     for curbytes in ( bdata[i:i+2] for i in range(0, len(bdata), 2) ):
-        iobuffer.write(byte2_encode(curbytes))
+        tmp += byte2_encode(curbytes)
+        if (len(tmp) > 175 and random.random() < 0.07) or len(tmp) > 416:
+            iobuffer.write(tmp)
+            iobuffer.write("\n")
+            tmp = ""
 
     iobuffer.seek(0)
     return iobuffer.read()
-        
 
 if __name__ == "__main__":
     import sys

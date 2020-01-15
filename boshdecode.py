@@ -44,6 +44,8 @@ def utf8_decode(utf8data):
     utf8data = utf8data[dl_trunc:]
 
     while utf8data and iobuffer.tell() < datalen:
+        if utf8data.startswith("\n"):
+            utf8data = utf8data.lstrip("\n")
         obytes, truncated = byte2_decode(utf8data)
         utf8data = utf8data[truncated:]
         iobuffer.write(obytes)
@@ -58,7 +60,13 @@ if __name__ == "__main__":
     #print(byte2_decode("带着这些问题, 我们来审视一下x。爱迪生曾经说过，天才是百分之一的勤奋加百分之九十九的汗水。这不禁令我深思。"))
     desc_stdin = sys.stdin.fileno()
     desc_stdout = sys.stdout.fileno()
-    st_in = open(desc_stdin, "rb", closefd=False).read().decode("utf-8", "ignore")
-    open(desc_stdout, "wb", closefd=False).write(utf8_decode(st_in))
+
+    new_in = open(desc_stdin, "rb", closefd=False)
+    st_in = b""
+    addn = new_in.read(1024)
+    while addn:
+        st_in += addn
+        addn = new_in.read(1024)
+    open(desc_stdout, "wb", closefd=False).write(utf8_decode(st_in.decode()))
     #sys.stdout.write(bytes_encode(st_in))
 
