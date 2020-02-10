@@ -37,7 +37,7 @@ function gen_length_indicator(length)
 function boshEncode(text)
 {
     var URIFormat = forceEncodeURI(text);
-    var ret = "　　", tmp = "";
+    var ret = "　　", tmp = "　　";
     ret += gen_length_indicator(URIFormat.length / 3);
 
     // Prevent Index-out-of-Range
@@ -57,12 +57,12 @@ function boshEncode(text)
         {
             ret += tmp;
             // full-width spaces
-            ret += '\n　　';
-            tmp = "";
+            ret += '\n';
+            tmp = "　　";
         }
         URIFormat = URIFormat.substr(6);
     }
-    if (tmp.length > 0)
+    if (tmp.length > 2) // if not empty
     {
         ret += tmp;
     }
