@@ -8,7 +8,7 @@ bosh = null;
 function loadData()
 {
     var req = new XMLHttpRequest();
-    req.open('GET', '../data.json');
+    req.open('GET', './data.json');
 
     req.onload = function() {
         if (req.status == 200) {
