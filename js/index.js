@@ -53,3 +53,20 @@ function loadData()
 }
 
 loadData();
+
+const decodedArea = document.getElementById('decoded-area');
+const encodedArea = document.getElementById('encoded-area');
+const decodeBtn = document.getElementById('decode-btn');
+const encodeBtn = document.getElementById('encode-btn');
+
+encodeBtn.addEventListener('click', e=>{
+    encodedArea.value = '';
+    const encoded = boshEncode(decodedArea.value);
+    encodedArea.value = encoded;
+});
+
+decodeBtn.addEventListener('click', e=>{
+    decodedArea.value = '';
+    const decoded = boshDecode(encodedArea.value);
+    decodedArea.value = decodeURIComponent(decoded);
+});
