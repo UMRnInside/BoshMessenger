@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>BoshMessenger</title>
+        <style>
+
+body{
+    overflow-x: hidden;
+}
+header>h2{
+    text-align: center;
+}
+div.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+div.content>textarea{
+    width: 30em;
+    height: 12em;
+    margin: 1em;
+}
+div.content>.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+footer{
+    text-align: center;
+}
+        </style>
+    </head>
+    <body>
+        <header>
+            <h2>The Bosh Messenger in UTF-8</h2>
+        </header>
+        <div class="content">
+            <textarea id="decoded-area" placeholder="Decoded Text Here"></textarea>
+            <div class="buttons">
+
+                <button id='encode-btn'>Encode &gt;&gt;</button>
+
+
+                <button id='decode-btn'>&lt;&lt; Decode</button>
+
+            </div>
+            <textarea id="encoded-area" placeholder="Encoded Text Here"></textarea>
+        </div>
+        <footer>
+            <p>Inspired by: </p>
+            <a href="https://github.com/menzi11/BullshitGenerator">menzi11/BullshitGenerator</a><p></p>
+            <a href="https://github.com/sym233/core-values-encoder">sym233/core-values-encoder</a>
+        </footer>
+        <script type="text/javascript" src="./js/index.js"></script>
+    </body>
+</html>
