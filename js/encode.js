@@ -1,6 +1,5 @@
 function byte2_encode(inum)
 {
-    console.log(inum);
     lpart = inum & 0x0F;
     hpart = inum >> 4;
     return bosh[lpart] + fortunes[hpart];
@@ -18,7 +17,7 @@ function gen_length_indicator(length)
 function boshEncode(text)
 {
     var URIFormat = encodeURIComponent(text);
-    var ret = "";
+    var ret = "　　", tmp = "";
     ret += gen_length_indicator(URIFormat.length / 3);
 
     // Prevent Index-out-of-Range
@@ -33,8 +32,19 @@ function boshEncode(text)
 
         var newtext = byte2_encode(newbytes);
 
-        ret += newtext;
+        tmp += newtext;
+        if ((tmp.length > 175 && Math.random() < 0.07) || tmp.length > 416)
+        {
+            ret += tmp;
+            // full-width spaces
+            ret += '\n　　';
+            tmp = "";
+        }
         URIFormat = URIFormat.substr(6);
+    }
+    if (tmp.length > 0)
+    {
+        ret += tmp;
     }
     return ret;
 }
