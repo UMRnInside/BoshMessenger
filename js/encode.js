@@ -37,7 +37,7 @@ function gen_length_indicator(length)
 function boshEncode(text)
 {
     var URIFormat = forceEncodeURI(text);
-    var ret = "　　", tmp = "　　";
+    var ret = "　　", tmp = "";
     ret += gen_length_indicator(URIFormat.length / 3);
 
     // Prevent Index-out-of-Range
