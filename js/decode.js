@@ -46,7 +46,7 @@ function decode_length_indicator(text)
 function boshDecode(text)
 {
     // trim() cannot remove full-width spaces
-    text = text.replace(/[　]/g, "");
+    text = text.replace(/[　]/g, "").replace(/[ ]/g, "");
     var length_trunc = decode_length_indicator(text);
     var datalen = length_trunc[0];
     var decodedURI = ""
