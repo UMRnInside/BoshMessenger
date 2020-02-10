@@ -1,3 +1,23 @@
+function forceEncodeURI(text)
+{
+    var ret = "";
+    for (i in text)
+    {
+        var chcode = text.charCodeAt(i);
+        if (chcode < 128)
+        {
+            var ts = chcode.toString(16);
+            ts = "00".substr(0, 2-ts.length) + ts;
+            ret += "%" + ts;
+        }
+        else
+        {
+            ret += encodeURI(text[i]);
+        }
+    }
+    return ret;
+}
+
 function byte2_encode(inum)
 {
     lpart = inum & 0x0F;
@@ -16,7 +36,7 @@ function gen_length_indicator(length)
 
 function boshEncode(text)
 {
-    var URIFormat = encodeURIComponent(text);
+    var URIFormat = forceEncodeURI(text);
     var ret = "　　", tmp = "";
     ret += gen_length_indicator(URIFormat.length / 3);
 
