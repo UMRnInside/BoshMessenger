@@ -40,13 +40,16 @@ def decode_length_indicator(utf8seq):
 
 def utf8_decode(utf8data):
     iobuffer = io.BytesIO(b"")
+    utf8data = utf8data.replace("　", "").replace(" ", "")
+    utf8data = utf8data.replace("\r\n", "").replace("\n", "")
     datalen, dl_trunc = decode_length_indicator(utf8data)
     utf8data = utf8data[dl_trunc:]
 
     while utf8data and iobuffer.tell() < datalen:
-        if utf8data.startswith("\n"):
-            utf8data = utf8data.lstrip("\n")
         obytes, truncated = byte2_decode(utf8data)
+        if truncated == 0:
+            warnmsg = "WARNING: bad text since byte " + str(iobuffer.tell())
+            sys.stderr.write(warnmsg + '\n')
         utf8data = utf8data[truncated:]
         iobuffer.write(obytes)
 
